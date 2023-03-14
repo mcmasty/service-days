@@ -59,4 +59,4 @@ pip install service-days
 
 ## Miscellany
 
-This is my first attempt at using hatch to manage a Python project. I'm not sure if I'm doing it right, but I'm trying. If you have any suggestions, please let me know. Thanks!
+This is my first attempt at using [hatch](https://github.com/pypa/hatch) to manage a Python project. I'm not sure if I'm doing it right, but I'm trying. If you have any suggestions, please let me know. Thanks!
