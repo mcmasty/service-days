@@ -36,9 +36,9 @@ dev = [
 
 
 [project.urls]
-Documentation = "https://github.com/unknown/service-days#readme"
-Issues = "https://github.com/unknown/service-days/issues"
-Source = "https://github.com/unknown/service-days"
+Documentation = "https://github.com/mcmasty/service-days#readme"
+Issues = "https://github.com/mcmasty/service-days/issues"
+Source = "https://github.com/mcmasty/service-days/"
 
 [tool.hatch.version]
 path = "src/service_days/__init__.py"
