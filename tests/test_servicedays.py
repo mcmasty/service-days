@@ -1032,3 +1032,10 @@ class Test(TestCase):
         day_gen = days_in_range(date(2023, 3, 6), date(2023, 3, 18),test_schedule )
 
         assert_that(list(day_gen), only_contains(in_schedule), "all days in range are in schedule")
+
+
+
+        test_schedule = [Day.MON, Day.WED, Day.SAT]
+        in_schedule = DateInSchedule(test_schedule)
+        day_gen = days_in_range(date(2023, 3, 6), date(2023, 3, 15), test_schedule)
+        print([d for d in day_gen])

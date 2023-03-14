@@ -37,6 +37,15 @@ e.g.
 ```
 
 
+## Explanation / Usage  
+
+This is a quick explanation, may not be 100% accurate.  See the tests for more examples,
+and examples of how the methods are used.
+
+
+![Service Days](docs/assets/Service-Days-info.png) 
+
+
 ## Installation
 
 ```console
