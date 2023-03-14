@@ -20,9 +20,20 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = [
-  "cowsay"]
 dynamic = ["version"]
+dependencies = [
+  "cowsay",
+  "mkdocs"]
+
+[project.optional-dependencies]
+dev = [
+  "hatchling",
+  "pytest",
+  "pytest-cov",
+  "bump2version",
+  "pyhamcrest"]
+
+
 
 [project.urls]
 Documentation = "https://github.com/unknown/service-days#readme"
@@ -57,7 +68,6 @@ python = ["310", "311"]
 branch = true
 parallel = true
 omit = [
-  "service_days/__about__.py",
 ]
 
 [tool.coverage.report]
