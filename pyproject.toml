@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "service-days"
-description = "A tool to help calculate the number of "work days" between two dates given a particular schedule."
+description = "A tool to help calculate the number of 'work days' between two dates given a particular schedule."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -76,3 +76,4 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
