@@ -1,15 +1,12 @@
 import json
+import logging.config
 from datetime import date, timedelta
-from enum import Enum, IntFlag
-import logging
+from enum import IntFlag
 from typing import List, Generator
 
-from service_days import __version__
+import service_days
 
-LOG_FORMAT: str = f"v{__version__} | %(levelname)s | %(asctime)s | %(funcName)s | %(message)s"
-LOG_LEVEL: str = "DEBUG"
-logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('servicedays')
 
 
 # Make some Constants
@@ -86,11 +83,12 @@ def service_day_add(start_date: date, work_days_to_add: int,
 
 
 def day_count_in_range(start_date: date, end_date: date, week_schedule: List[Day]) -> int:
+    logging.debug("ENTERING: day_count_in_range")
     return len(list(days_in_range(start_date, end_date, week_schedule)))
 
 
 def days_in_range(start_date: date, end_date: date, week_schedule: List[Day]) -> Generator[date, None, None]:
-
+    logger.debug(f"ENTERING: days_in_range: start_date: {start_date}, end_date: {end_date} ")
     e_date = start_date
     e_day = Day(e_date.weekday())
     keep_working = True

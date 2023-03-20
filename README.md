@@ -59,4 +59,19 @@ pip install service-days
 
 ## Miscellany
 
+
+### Logging 
+
+Uses standard Python logging, with the name `servicedays`
+
+To make quiet in your code do the following 
+
+```python 
+
+        s_logger = logging.getLogger('servicedays')
+        s_logger.setLevel(logging.WARNING)
+```
+
+
+### Hatch 
 This is my first attempt at using [hatch](https://github.com/pypa/hatch) to manage a Python project. I'm not sure if I'm doing it right, but I'm trying. If you have any suggestions, please let me know. Thanks!

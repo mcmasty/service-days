@@ -1,14 +1,41 @@
-from typing import T, List
+import logging.config
+
+d = {
+    'version': 1,
+    'formatters': {
+        'detailed': {
+            'class': 'logging.Formatter',
+            'format': "%(asctime)s | %(levelno)s | %(funcName)s | %(message)s"
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+        },
+    },
+    'loggers': {
+        'root': {
+            'level': 'DEBUG',
+            'handlers': ['console']
+        }
+    }
+}
+
+logging.config.dictConfig(d)
+t_logger = logging.getLogger()
+
+from typing import List
 from unittest import TestCase
 
 from hamcrest.core.description import Description
 
-from service_days.servicedays import service_day_add, Day, map_schedule_txt_to_day_list, days_in_range, day_count_in_range
-
+from service_days.servicedays import service_day_add, Day, map_schedule_txt_to_day_list, days_in_range, \
+    day_count_in_range
 from datetime import date
 
 from hamcrest import *
-
 from hamcrest.core.base_matcher import BaseMatcher
 
 
@@ -277,7 +304,7 @@ class Test(TestCase):
         assert_that(service_day_add(t_date, add_days), equal_to(date(2023, 3, 22)))
 
     def test_service_day_add_to_fri_sat_sun(self):
-        schedule = (Day.FRI, Day.SAT, Day.SUN)
+        schedule = [Day.FRI, Day.SAT, Day.SUN]
         # Monday -> Friday
         t_date = date(2023, 3, 6)
         assert_that(service_day_add(t_date, 1, schedule), equal_to(date(2023, 3, 10)))
@@ -522,7 +549,7 @@ class Test(TestCase):
         assert_that(service_day_add(t_date, add_days, schedule), equal_to(date(2023, 4, 1)))
 
     def test_service_day_add_to_mon_wed_sat(self):
-        schedule = (Day.MON, Day.WED, Day.SAT)
+        schedule = [Day.MON, Day.WED, Day.SAT]
         add_days = 1
         # Monday -> Wednesday
         t_date = date(2023, 3, 6)
@@ -1027,15 +1054,24 @@ class Test(TestCase):
                     equal_to(8), "Test Days in Period")
 
     def test_service_range(self):
+        # t_logger.info("test 1")
         test_schedule = [Day.MON, Day.WED, Day.FRI, Day.SUN]
         in_schedule = DateInSchedule(test_schedule)
-        day_gen = days_in_range(date(2023, 3, 6), date(2023, 3, 18),test_schedule )
+        day_gen = days_in_range(date(2023, 3, 6), date(2023, 3, 18), test_schedule)
 
         assert_that(list(day_gen), only_contains(in_schedule), "all days in range are in schedule")
-
-
 
         test_schedule = [Day.MON, Day.WED, Day.SAT]
         in_schedule = DateInSchedule(test_schedule)
         day_gen = days_in_range(date(2023, 3, 6), date(2023, 3, 15), test_schedule)
-        print([d for d in day_gen])
+        print(list(day_gen))
+
+
+    def test_foobar(self):
+        s_logger = logging.getLogger('servicedays')
+        s_logger.setLevel(logging.WARNING)
+
+        test_schedule = [Day.MON, Day.WED, Day.FRI, Day.SUN]
+        xx = days_in_range(date(2023, 3, 6), date(2023, 3, 18), test_schedule)
+        list(xx)  # force generator to run
+
